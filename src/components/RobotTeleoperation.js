@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar';
 import './RobotTeleoperation.css';
 
 const RobotTeleoperation = () => {
+  const [robots, setRobots] = useState([]);
+  const [selectedRobotId, setSelectedRobotId] = useState('');
   const [robot, setRobot] = useState(null);
+  const [intervalId, setIntervalId] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/robots/1/')
-      .then(response => setRobot(response.data.robot))
+    axios.get('http://localhost:8000/api/robots/')
+      .then(response => setRobots(response.data.robots))
       .catch(error => console.error(error));
   }, []);
+
+  useEffect(() => {
+    if (selectedRobotId) {
+      axios.get(`http://localhost:8000/api/robots/${selectedRobotId}/`)
+        .then(response => setRobot(response.data.robot))
+        .catch(error => console.error(error));
+    }
+  }, [selectedRobotId]);
 
   const moveRobot = (direction) => {
     if (robot) {
       const moveAmount = 20;
       const updatedPose = { ...robot };
-      if (direction === 'up') updatedPose.pose_y -= moveAmount;
-      if (direction === 'down') updatedPose.pose_y += moveAmount;
-      if (direction === 'left') updatedPose.pose_x -= moveAmount;
-      if (direction === 'right') updatedPose.pose_x += moveAmount;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      if (direction === 'up' && updatedPose.pose_y - moveAmount >= 0) updatedPose.pose_y -= moveAmount;
+      if (direction === 'down' && updatedPose.pose_y + moveAmount <= windowHeight - 80) updatedPose.pose_y += moveAmount;
+      if (direction === 'left' && updatedPose.pose_x - moveAmount >= 0) updatedPose.pose_x -= moveAmount;
+      if (direction === 'right' && updatedPose.pose_x + moveAmount <= windowWidth - 80) updatedPose.pose_x += moveAmount;
 
       axios.put(`http://localhost:8000/api/robots/${robot.id}/`, updatedPose)
         .then(response => setRobot(response.data.robot))
@@ -27,19 +40,40 @@ const RobotTeleoperation = () => {
     }
   };
 
-  if (!robot) return <div>Loading...</div>;
+  const startMoving = (direction) => {
+    moveRobot(direction);
+    const id = setInterval(() => moveRobot(direction), 250);
+    setIntervalId(id);
+  };
+
+  const stopMoving = () => {
+    clearInterval(intervalId);
+    setIntervalId(null);
+  };
+
+  if (!robots.length) return <div>Loading...</div>;
 
   return (
     <div>
       <div className="teleoperation-container">
         <h1>Robot Teleoperation</h1>
-        <img src="/img/robot.png" alt="Robot" style={{ position: 'absolute', top: robot.pose_y, left: robot.pose_x, width:'80px' }} />
-        <div className="controls">
-          <button onClick={() => moveRobot('up')}>Up</button>
-          <button onClick={() => moveRobot('down')}>Down</button>
-          <button onClick={() => moveRobot('left')}>Left</button>
-          <button onClick={() => moveRobot('right')}>Right</button>
-        </div>
+        <select onChange={(e) => setSelectedRobotId(e.target.value)} value={selectedRobotId}>
+          <option value="">Select a Robot</option>
+          {robots.map(robot => (
+            <option key={robot.id} value={robot.id}>{robot.name}</option>
+          ))}
+        </select>
+        {robot && (
+          <>
+            <img src="/img/robot.png" alt="Robot" style={{ position: 'absolute', top: robot.pose_y, left: robot.pose_x, width:'80px' }} />
+            <div className="controls">
+              <button onMouseDown={() => startMoving('up')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Up</button>
+              <button onMouseDown={() => startMoving('down')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Down</button>
+              <button onMouseDown={() => startMoving('left')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Left</button>
+              <button onMouseDown={() => startMoving('right')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Right</button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
