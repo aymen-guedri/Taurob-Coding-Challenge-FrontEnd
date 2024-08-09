@@ -1,31 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RobotForm.css';
 
-const RobotForm = ({ robot = {}, onSubmit }) => {
-  const [name, setName] = useState(robot.name || '');
-  const [modelName, setModelName] = useState(robot.model_name || '');
-  const [poseX, setPoseX] = useState(robot.pose_x || '');
-  const [poseY, setPoseY] = useState(robot.pose_y || '');
+const RobotForm = ({ onSubmit }) => {
+  const [robots, setRobots] = useState([]);
+  const [selectedRobotId, setSelectedRobotId] = useState('');
+  const [name, setName] = useState('');
+  const [modelName, setModelName] = useState('');
+  const [poseX, setPoseX] = useState('');
+  const [poseY, setPoseY] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageColor, setMessageColor] = useState('');
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/robots/')
+      .then(response => setRobots(response.data.robots))
+      .catch(error => console.error(error));
+  }, []);
+
+  useEffect(() => {
+    if (selectedRobotId) {
+      const robot = robots.find(r => r.id === selectedRobotId);
+      if (robot) {
+        setName(robot.name);
+        setModelName(robot.model_name);
+        setPoseX(robot.pose_x);
+        setPoseY(robot.pose_y);
+      }
+    } else {
+      setName('');
+      setModelName('');
+      setPoseX('');
+      setPoseY('');
+    }
+  }, [selectedRobotId, robots]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const robotData = { name, model_name: modelName, pose_x: poseX, pose_y: poseY };
 
-    if (robot.id) {
-      axios.put(`http://localhost:8000/api/robots/${robot.id}/`, robotData)
-        .then(response => onSubmit(response.data.robot))
-        .catch(error => console.error(error));
-    } else {
-      axios.post(`http://localhost:8000/api/robots/`, robotData)
-        .then(response => onSubmit(response.data.robot))
-        .catch(error => console.error(error));
-    }
+    const request = selectedRobotId
+      ? axios.put(`http://localhost:8000/api/robots/${selectedRobotId}/`, robotData)
+      : axios.post('http://localhost:8000/api/robots/', robotData);
+
+    request
+      .then(response => {
+        onSubmit(response.data.robot);
+        setMessage(selectedRobotId ? 'Robot updated successfully!' : 'Robot created successfully!');
+        setMessageColor('green');
+        setTimeout(() => setMessage(''), 5000);
+        setName('');
+        setModelName('');
+        setPoseX('');
+        setPoseY('');
+        setSelectedRobotId('');
+      })
+      .catch(error => {
+        console.error(error);
+        setMessage('Failed to submit robot.');
+        setMessageColor('red');
+        setTimeout(() => setMessage(''), 5000);
+      });
   };
 
   return (
     <div className="robot-form-container">
-      <h1>Robot Form</h1>
+      <h2>Update or create a Robot</h2>
+      <p style={{color:"blue"}}>{selectedRobotId ? 'Update existing robot' : 'Create new robot'}</p>
+      <div className="robot-select-container">
+        <label htmlFor="robot-select"></label>
+        <select id="robot-select" onChange={(e) => setSelectedRobotId(e.target.value)} value={selectedRobotId}>
+          <option value="">Create new Robot</option>
+          {robots.map(robot => (
+            <option key={robot.id} value={robot.id}>{robot.name}</option>
+          ))}
+        </select>
+      </div>
       <form onSubmit={handleSubmit} className="robot-form">
         <input
           value={name}
@@ -53,8 +103,9 @@ const RobotForm = ({ robot = {}, onSubmit }) => {
           placeholder="Pose Y"
           required
         />
-        <button type="submit">Submit</button>
+        <button type="submit">{selectedRobotId ? 'Update Robot' : 'Create Robot'}</button>
       </form>
+      {message && <p style={{ color: messageColor }}>{message}</p>}
     </div>
   );
 };
