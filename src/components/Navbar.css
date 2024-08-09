@@ -1,64 +1,78 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2C2C2C;
-    padding: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  .navbar-brand a {
-    color: white;
-    font-size: 1.5rem;
-    text-decoration: none;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2C2C2C;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  border-radius: 20%;
+  height: 50px;
+  width: 50px;
+  margin-right: 0.5rem;
+}
+
+.navbar-brand a {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navbar-links a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
+.navbar-links a:hover {
+  color: rgb(0, 191, 255);
+}
+
+.navbar-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.status-circle.green {
+  background-color: green;
+}
+
+.status-circle.red {
+  background-color: red;
+}
+
+.status-circle.yellow {
+  background-color: yellow;
+}
+
+@media (max-width: 600px) {
   .navbar-links {
-    display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
   }
-  
+
   .navbar-links a {
-    color: white;
-    margin-left: 1rem;
-    text-decoration: none;
+    margin: 0.5rem 0;
   }
-  
-  .navbar-links a:hover {
-    color: #A30000;
-  }
-  
-  .navbar-status {
-    display: flex;
-    align-items: center;
-  }
-  
-  .status-circle {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 0.5rem;
-  }
-  
-  .status-circle.green {
-    background-color: green;
-  }
-  
-  .status-circle.red {
-    background-color: red;
-  }
-  
-  .status-circle.yellow {
-    background-color: yellow;
-  }
-  
-  @media (max-width: 600px) {
-    .navbar-links {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .navbar-links a {
-      margin: 0.5rem 0;
-    }
-  }
+}

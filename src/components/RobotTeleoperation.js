@@ -57,7 +57,7 @@ const RobotTeleoperation = () => {
     <div>
       <div className="teleoperation-container">
         <h1>Robot Teleoperation</h1>
-        <select onChange={(e) => setSelectedRobotId(e.target.value)} value={selectedRobotId}>
+        <select className="robot-select" onChange={(e) => setSelectedRobotId(e.target.value)} value={selectedRobotId}>
           <option value="">Select a Robot</option>
           {robots.map(robot => (
             <option key={robot.id} value={robot.id}>{robot.name}</option>
@@ -65,12 +65,14 @@ const RobotTeleoperation = () => {
         </select>
         {robot && (
           <>
-            <img src="/img/robot.png" alt="Robot" style={{ position: 'absolute', top: robot.pose_y, left: robot.pose_x, width:'80px' }} />
+            <img src="/img/robot.png" alt="Robot" className="robot-image" style={{ top: `${robot.pose_y}px`, left: `${robot.pose_x}px` }} />
             <div className="controls">
-              <button onMouseDown={() => startMoving('up')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Up</button>
-              <button onMouseDown={() => startMoving('down')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Down</button>
-              <button onMouseDown={() => startMoving('left')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Left</button>
-              <button onMouseDown={() => startMoving('right')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Right</button>
+              <button className="control-button" onMouseDown={() => startMoving('up')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Up</button>
+              <div className="middle-buttons">
+                <button className="control-button" onMouseDown={() => startMoving('left')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Left</button>
+                <button className="control-button" onMouseDown={() => startMoving('right')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Right</button>
+              </div>
+              <button className="control-button" onMouseDown={() => startMoving('down')} onMouseUp={stopMoving} onMouseLeave={stopMoving}>Down</button>
             </div>
           </>
         )}
