@@ -4,28 +4,27 @@ import './Navbar.css';
 import useWebSocket from 'react-use-websocket';
 
 const Navbar = () => {
-  const [socketUrl] = useState('ws://localhost:8000/ws/robots/');
+  const [socketUrl] = useState('ws://localhost:8000/ws/robot/');
   const { readyState } = useWebSocket(socketUrl);
 
   const connectionStatus = {
-    0: 'Connecting',
-    1: 'Connected',
-    2: 'Closing',
-    3: 'Closed',
+    0: 'Web socket Connecting',
+    1: 'Web socket Connected',
+    2: 'Web socket Closing',
+    3: 'Web socket Closed',
   }[readyState];
 
   const statusColor = {
-    'Connecting': 'yellow',
-    'Connected': 'green',
-    'Closing': 'yellow',
-    'Closed': 'red',
-  }[connectionStatus];
+    0: 'yellow',
+    1: 'green',
+    2: 'yellow',
+    3: 'red',
+  }[readyState];
 
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">Taurob - Coding Challenge
-        </Link>
+        <Link to="/">Taurob - Coding Challenge</Link>
       </div>
       <div className="navbar-links">
         <Link to="/teleoperation">Teleoperation</Link>
@@ -33,7 +32,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-status">
         <span className={`status-circle ${statusColor}`}></span>
-        <span>{connectionStatus}</span>
+        <span style={{ color: 'white' }}>{connectionStatus}</span>
       </div>
     </nav>
   );
