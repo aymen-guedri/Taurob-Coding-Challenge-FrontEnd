@@ -14,7 +14,7 @@ const MissionList = () => {
 
   return (
     <div className="mission-list-container">
-      <h1>Missions</h1>
+      <h1>Mission List</h1>
       <ul className="mission-list">
         {missions.map(mission => (
           <li key={mission.id} className="mission-item">
