@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">Taurob - Coding Challenge</Link>
+      <Link to="/"><img src="/img/logo.jpg" alt="Logo" />Taurob - Coding Challenge</Link>
       </div>
       <div className="navbar-links">
         <Link to="/teleoperation">Teleoperation</Link>
