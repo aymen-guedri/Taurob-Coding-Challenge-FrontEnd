@@ -9,14 +9,14 @@ const RobotTeleoperation = () => {
   const [intervalId, setIntervalId] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/robots/')
+    axios.get(`${process.env.REACT_APP_API_URL}/robots/`)
       .then(response => setRobots(response.data.robots))
       .catch(error => console.error(error));
   }, []);
 
   useEffect(() => {
     if (selectedRobotId) {
-      axios.get(`http://localhost:8000/api/robots/${selectedRobotId}/`)
+      axios.get(`${process.env.REACT_APP_API_URL}/robots/${selectedRobotId}/`)
         .then(response => setRobot(response.data.robot))
         .catch(error => console.error(error));
     }
@@ -34,7 +34,7 @@ const RobotTeleoperation = () => {
       if (direction === 'left' && updatedPose.pose_x - moveAmount >= 0) updatedPose.pose_x -= moveAmount;
       if (direction === 'right' && updatedPose.pose_x + moveAmount <= windowWidth - 80) updatedPose.pose_x += moveAmount;
 
-      axios.put(`http://localhost:8000/api/robots/${robot.id}/`, updatedPose)
+      axios.put(`${process.env.REACT_APP_API_URL}/robots/${robot.id}/`, updatedPose)
         .then(response => setRobot(response.data.robot))
         .catch(error => console.error(error));
     }

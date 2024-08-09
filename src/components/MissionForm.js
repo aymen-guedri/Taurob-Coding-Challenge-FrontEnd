@@ -9,7 +9,7 @@ const MissionForm = ({ mission = {}, onSubmit }) => {
   const [robots, setRobots] = useState([]);
 
   useEffect(() => {
-    axios.get('/robots/')
+    axios.get(`${process.env.REACT_APP_API_URL}/robots/`)
       .then(response => setRobots(response.data.robots))
       .catch(error => console.error(error));
   }, []);
@@ -19,11 +19,11 @@ const MissionForm = ({ mission = {}, onSubmit }) => {
     const missionData = { name, description, robot: robotId };
 
     if (mission.id) {
-      axios.put(`/mission/${mission.id}/`, missionData)
+      axios.put(`${process.env.REACT_APP_API_URL}/mission/${mission.id}/`, missionData)
         .then(response => onSubmit(response.data.mission))
         .catch(error => console.error(error));
     } else {
-      axios.post('/mission/', missionData)
+      axios.post(`${process.env.REACT_APP_API_URL}/mission/`, missionData)
         .then(response => onSubmit(response.data.mission))
         .catch(error => console.error(error));
     }
