@@ -1,0 +1,29 @@
+.mission-list-container {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .mission-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .mission-item {
+    margin: 1rem 0;
+  }
+  
+  .mission-item a {
+    text-decoration: none;
+    color: #2C2C2C;
+    font-size: 1.2rem;
+  }
+  
+  .mission-item a:hover {
+    color: #A30000;
+  }
+  
+  @media (max-width: 600px) {
+    .mission-item a {
+      font-size: 1rem;
+    }
+  }
