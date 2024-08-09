@@ -7,7 +7,7 @@ const MissionList = () => {
   const [missions, setMissions] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/missions/')
+    axios.get(`${process.env.REACT_APP_API_URL}/missions/`)
       .then(response => setMissions(response.data.missions))
       .catch(error => console.error(error));
   }, []);

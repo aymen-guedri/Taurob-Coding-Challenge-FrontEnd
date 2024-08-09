@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
 
 const WebSocketComponent = () => {
-  const [socketUrl] = useState('ws://localhost:8000/ws/robots/');
+  const [socketUrl] = useState(process.env.REACT_APP_WS_URL);
   const { lastMessage, readyState } = useWebSocket(socketUrl);
 
   const connectionStatus = {
@@ -14,6 +14,8 @@ const WebSocketComponent = () => {
 
   return (
     <div>
+      <p>Connection Status: {connectionStatus}</p>
+      {lastMessage ? <p>Last message: {lastMessage.data}</p> : null}
     </div>
   );
 };

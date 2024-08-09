@@ -13,7 +13,7 @@ const RobotForm = ({ onSubmit }) => {
   const [messageColor, setMessageColor] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/robots/')
+    axios.get(`${process.env.REACT_APP_API_URL}/robots/`)
       .then(response => setRobots(response.data.robots))
       .catch(error => console.error(error));
   }, []);
@@ -40,8 +40,8 @@ const RobotForm = ({ onSubmit }) => {
     const robotData = { name, model_name: modelName, pose_x: poseX, pose_y: poseY };
 
     const request = selectedRobotId
-      ? axios.put(`http://localhost:8000/api/robots/${selectedRobotId}/`, robotData)
-      : axios.post('http://localhost:8000/api/robots/', robotData);
+      ? axios.put(`${process.env.REACT_APP_API_URL}/robots/${selectedRobotId}/`, robotData)
+      : axios.post(`${process.env.REACT_APP_API_URL}/robots/`, robotData);
 
     request
       .then(response => {

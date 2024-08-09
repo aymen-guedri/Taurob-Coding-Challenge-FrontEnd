@@ -4,7 +4,7 @@ import './Navbar.css';
 import useWebSocket from 'react-use-websocket';
 
 const Navbar = () => {
-  const [socketUrl] = useState('ws://localhost:8000/ws/robot/');
+  const [socketUrl] = useState(process.env.REACT_APP_WS_URL);
   const { readyState } = useWebSocket(socketUrl);
 
   const connectionStatus = {
@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-      <Link to="/"><img src="/img/logo.jpg" alt="Logo" />Taurob - Coding Challenge</Link>
+        <Link to="/"><img src="/img/logo.jpg" alt="Logo" />Taurob - Coding Challenge</Link>
       </div>
       <div className="navbar-links">
         <Link to="/teleoperation">Teleoperation</Link>
