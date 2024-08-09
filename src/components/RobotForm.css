@@ -1,57 +1,89 @@
 .robot-form-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.robot-form-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.robot-form-container p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.robot-select-container {
+  margin-bottom: 1.5rem;
+}
+
+.robot-select-container label {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.robot-select-container select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.robot-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.robot-form input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.robot-form button {
+  padding: 0.75rem;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.robot-form button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+  .robot-form-container {
+    padding: 1rem;
   }
-  
+
   .robot-form-container h1 {
     font-size: 2rem;
-    color: #2C2C2C;
-    margin-bottom: 1rem;
   }
-  
-  .robot-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .robot-form input {
-    padding: 0.5rem;
+
+  .robot-form-container p {
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
   }
-  
+
+  .robot-select-container label,
+  .robot-select-container select,
+  .robot-form input,
   .robot-form button {
-    padding: 0.75rem;
     font-size: 1rem;
-    background-color: #2C2C2C;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
   }
-  
-  .robot-form button:hover {
-    background-color: #A30000;
-  }
-  
-  @media (max-width: 600px) {
-    .robot-form-container {
-      padding: 1rem;
-    }
-  
-    .robot-form-container h1 {
-      font-size: 1.5rem;
-    }
-  
-    .robot-form input,
-    .robot-form button {
-      font-size: 0.9rem;
-    }
-  }
+}
