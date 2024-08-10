@@ -6,6 +6,7 @@ import useWebSocket from 'react-use-websocket';
 const Navbar = () => {
   const [socketUrl] = useState(process.env.REACT_APP_WS_URL);
   const { readyState } = useWebSocket(socketUrl);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const connectionStatus = {
     0: 'Web socket Connecting',
@@ -21,12 +22,19 @@ const Navbar = () => {
     3: 'red',
   }[readyState];
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-brand">
         <Link to="/"><img src="/img/logo.jpg" alt="Logo" />Taurob - Coding Challenge</Link>
       </div>
-      <div className="navbar-links">
+      <button className="menu-toggle" onClick={toggleMenu}>
+        ☰
+      </button>
+      <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
         <Link to="/teleoperation">Teleoperation</Link>
         <Link to="/create-robot">Robot</Link>
         <Link to="/create-mission">Mission</Link>

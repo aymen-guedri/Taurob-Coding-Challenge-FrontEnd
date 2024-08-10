@@ -72,13 +72,41 @@
   background-color: yellow;
 }
 
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 @media (max-width: 600px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
   .navbar-links {
+    display: none;
     flex-direction: column;
     width: 100%;
   }
 
+  .navbar-links.open {
+    display: flex;
+  }
+
   .navbar-links a {
     margin: 0.5rem 0;
+  }
+
+  .navbar-status {
+    margin-top: 1rem;
   }
 }
