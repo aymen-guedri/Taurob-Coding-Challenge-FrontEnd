@@ -75,7 +75,7 @@ const MissionForm = ({ onSubmit }) => {
 
   return (
     <div className="mission-form-container">
-      <h1>{selectedMissionId ? 'Update Mission' : 'Create Mission'}</h1>
+      <h2>Update or create a Mission</h2>
       <p style={{color:"blue"}}>{selectedMissionId ? 'Update existing mission' : 'Create new mission'}</p>
       <div className="mission-select-container">
         <label htmlFor="mission-select"></label>
