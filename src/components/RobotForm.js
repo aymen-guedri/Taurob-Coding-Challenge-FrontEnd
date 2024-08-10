@@ -37,12 +37,20 @@ const RobotForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const robotData = { name, modelName, poseX, poseY };
-
+    const robotData = { name, model_name: modelName };
+  
+    if (poseX !== '') {
+      robotData.pose_x = parseFloat(poseX);
+    }
+  
+    if (poseY !== '') {
+      robotData.pose_y = parseFloat(poseY);
+    }
+  
     const request = selectedRobotId
       ? axios.put(`${process.env.REACT_APP_API_URL}/robots/${selectedRobotId}/`, robotData)
       : axios.post(`${process.env.REACT_APP_API_URL}/robots/`, robotData);
-
+  
     request
       .then(response => {
         onSubmit(response.data.robot);
@@ -115,5 +123,6 @@ const RobotForm = ({ onSubmit }) => {
       {message && <p style={{ color: messageColor }}>{message}</p>}
     </div>
   );
-}
+};
+
 export default RobotForm;

@@ -28,6 +28,6 @@ const MissionDetails = () => {
       </div>
     </div>
   );
-};
 
+};
 export default MissionDetails;
