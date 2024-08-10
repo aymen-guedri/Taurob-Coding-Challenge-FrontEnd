@@ -28,7 +28,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-links">
         <Link to="/teleoperation">Teleoperation</Link>
-        <Link to="/create-robot">Robot Form</Link>
+        <Link to="/create-robot">Robot</Link>
+        <Link to="/create-mission">Mission</Link>
       </div>
       <div className="navbar-status">
         <span className={`status-circle ${statusColor}`}></span>

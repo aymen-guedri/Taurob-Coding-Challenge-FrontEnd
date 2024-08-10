@@ -8,6 +8,10 @@ import RobotTeleoperation from './components/RobotTeleoperation';
 import Navbar from './components/Navbar';
 
 const App = () => {
+  const handleMissionSubmit = (mission) => {
+    console.log('Mission submitted:', mission);
+  };
+
   const handleRobotSubmit = (robot) => {
     console.log('Robot submitted:', robot);
   };
@@ -20,10 +24,9 @@ const App = () => {
           <Route path="/" element={<MissionList />} />
           <Route path="/missions/:id" element={<MissionDetails />} />
           <Route path="/create-robot" element={<RobotForm onSubmit={handleRobotSubmit} />} />
-          <Route path="/create-mission" element={<MissionForm />} />
+          <Route path="/create-mission" element={<MissionForm onSubmit={handleMissionSubmit} />} />
           <Route path="/teleoperation" element={<RobotTeleoperation />} />
         </Routes>
-      
       </div>
     </Router>
   );
