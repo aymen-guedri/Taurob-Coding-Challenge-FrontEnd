@@ -57,6 +57,7 @@ const MissionForm = ({ onSubmit }) => {
         setDescription('');
         setRobotId('');
         setSelectedMissionId('');
+        setTimeout(() => window.location.reload(), 3000);
       })
       .catch(error => {
         if (error.response) {

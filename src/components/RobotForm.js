@@ -62,6 +62,7 @@ const RobotForm = ({ onSubmit }) => {
         setPoseX('');
         setPoseY('');
         setSelectedRobotId('');
+        setTimeout(() => window.location.reload(), 3000);
       })
       .catch(error => {
         if (error.response) {
