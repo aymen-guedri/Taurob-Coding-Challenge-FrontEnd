@@ -2,69 +2,56 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Part 1: Installation and Setup
+
+### Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+#### `npm install`
+
+Installs all the dependencies required for the project.
+
+#### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Part 2: Screenshots and Description
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Home Screen (MissionList)
 
-### `npm run build`
+The home screen displays a list of missions. Each mission is clickable and navigates to the mission details page.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Home Screen](/frontend/public/img/image.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Mission Details Screen (MissionDetails)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This screen shows the details of a selected mission, including the associated robot's details.
 
-### `npm run eject`
+![Mission Details Screen](/frontend/public/img/image-1.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Robot Form Screen (RobotForm)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This screen allows users to create or update a robot. It includes fields for the robot's name, model name, and pose coordinates.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Robot Form Screen](/frontend/public/img/image-2.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Mission Form Screen (MissionForm)
 
-## Learn More
+This screen allows users to create or update a mission. It includes fields for the mission's name, description, and associated robot.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Mission Form Screen](/frontend/public/img/image-3.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Robot Teleoperation Screen (RobotTeleoperation)
 
-### Code Splitting
+This screen allows users to control a robot's movements. Users can select a robot and use directional buttons to move it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Robot Teleoperation Screen](/frontend/public/img/image-4.png)
 
-### Analyzing the Bundle Size
+Mobile screen 
+![Mission Form Screen](/frontend/public/img/image-5.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
