@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './MissionForm.css';
 
@@ -13,7 +13,7 @@ const MissionForm = ({ onSubmit }) => {
   const [messageColor, setMessageColor] = useState('');
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/missions/`)
+    axios.get(`${process.env.REACT_APP_API_URL}/missions/?all=true`)
       .then(response => setMissions(response.data.missions))
       .catch(error => console.error(error));
   }, []);
