@@ -3,12 +3,12 @@ import axios from 'axios';
 import './RobotForm.css';
 
 const RobotForm = ({ onSubmit }) => {
-  const [robots, setRobots] = useState([]);
   const [selectedRobotId, setSelectedRobotId] = useState('');
   const [name, setName] = useState('');
   const [modelName, setModelName] = useState('');
   const [poseX, setPoseX] = useState('');
   const [poseY, setPoseY] = useState('');
+  const [robots, setRobots] = useState([]);
   const [message, setMessage] = useState('');
   const [messageColor, setMessageColor] = useState('');
 
@@ -37,7 +37,7 @@ const RobotForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const robotData = { name, model_name: modelName, pose_x: poseX, pose_y: poseY };
+    const robotData = { name, modelName, poseX, poseY };
 
     const request = selectedRobotId
       ? axios.put(`${process.env.REACT_APP_API_URL}/robots/${selectedRobotId}/`, robotData)
@@ -56,7 +56,14 @@ const RobotForm = ({ onSubmit }) => {
         setSelectedRobotId('');
       })
       .catch(error => {
-        console.error(error);
+        if (error.response) {
+          console.error('Error response:', error.response);
+          if (error.response.data) {
+            console.error('Error details:', error.response.data);
+          }
+        } else {
+          console.error('Error message:', error.message);
+        }
         setMessage('Failed to submit robot.');
         setMessageColor('red');
         setTimeout(() => setMessage(''), 5000);
@@ -81,33 +88,32 @@ const RobotForm = ({ onSubmit }) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Name"
-          required
+          required={!selectedRobotId}
         />
         <input
           value={modelName}
           onChange={(e) => setModelName(e.target.value)}
           placeholder="Model Name"
-          required
+          required={!selectedRobotId}
         />
         <input
           type="number"
           value={poseX}
           onChange={(e) => setPoseX(e.target.value)}
           placeholder="Pose X"
-          required
+          required={!selectedRobotId}
         />
         <input
           type="number"
           value={poseY}
           onChange={(e) => setPoseY(e.target.value)}
           placeholder="Pose Y"
-          required
+          required={!selectedRobotId}
         />
         <button type="submit">{selectedRobotId ? 'Update Robot' : 'Create Robot'}</button>
       </form>
       {message && <p style={{ color: messageColor }}>{message}</p>}
     </div>
   );
-};
-
+}
 export default RobotForm;
