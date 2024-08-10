@@ -6,7 +6,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   margin: 2rem auto;
-  background-image: linear-gradient(to right, #d3d3d3, #ecf4fc);
+  background-image: linear-gradient(to right, #e6e6e6, #f7fbff);
   color: rgb(8, 8, 92);
 }
 
@@ -55,6 +55,33 @@
 .mission-item-content {
   display: flex;
   align-items: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination span {
+  margin: 0 0.5rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 600px) {
