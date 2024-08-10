@@ -25,33 +25,31 @@ The page will reload when you make changes.\
 
 The home screen displays a list of missions. Each mission is clickable and navigates to the mission details page.
 
-![Home Screen](/frontend/public/img/image.png)
+![Home Screen](public/img/image.png)
 
 ### Mission Details Screen (MissionDetails)
 
 This screen shows the details of a selected mission, including the associated robot's details.
 
-![Mission Details Screen](/frontend/public/img/image-1.png)
+![Mission Details Screen](public/img/image-1.png)
 
 ### Robot Form Screen (RobotForm)
 
 This screen allows users to create or update a robot. It includes fields for the robot's name, model name, and pose coordinates.
 
-![Robot Form Screen](/frontend/public/img/image-2.png)
+![Robot Form Screen](public/img/image-2.png)
 
 ### Mission Form Screen (MissionForm)
 
 This screen allows users to create or update a mission. It includes fields for the mission's name, description, and associated robot.
 
-![Mission Form Screen](/frontend/public/img/image-3.png)
+![Mission Form Screen](public/img/image-3.png)
 
 ### Robot Teleoperation Screen (RobotTeleoperation)
 
 This screen allows users to control a robot's movements. Users can select a robot and use directional buttons to move it.
 
-![Robot Teleoperation Screen](/frontend/public/img/image-4.png)
+![Robot Teleoperation Screen](public/img/image-4.png)
 
 Mobile screen 
-![Mission Form Screen](/frontend/public/img/image-5.png)
-
- 
+![Mobile screen](public/img/image-5.png)
