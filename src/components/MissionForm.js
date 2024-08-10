@@ -67,7 +67,7 @@ const MissionForm = ({ onSubmit }) => {
         } else {
           console.error('Error message:', error.message);
         }
-        setMessage('Failed to submit mission.');
+        setMessage('Failed to submit the mission; please verify the robot selection.');
         setMessageColor('red');
         setTimeout(() => setMessage(''), 5000);
       });
